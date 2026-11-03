@@ -2,6 +2,10 @@
 
 A task management web application built with Laravel, React, TypeScript, and Inertia.js.
 
+## Application Preview
+
+![Task Manager Dashboard](public/images/task-dashboard.png)
+
 ## Features
 
 - User authentication and registration
