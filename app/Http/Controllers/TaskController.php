@@ -6,9 +6,9 @@ use App\Http\Requests\TaskRequest;
 use App\Models\Task;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -19,10 +19,10 @@ class TaskController extends Controller
 
         $tasks = Task::query()
             ->with('user:id,name')
-            ->when(! $user->isAdmin(), fn($q) => $q->where('user_id', $user->id))
-            ->when($filters['search'] ?? null, fn($q, $v) => $q->where('title', 'like', "%{$v}%"))
-            ->when($filters['status'] ?? null, fn($q, $v) => $q->where('status', $v))
-            ->when($filters['priority'] ?? null, fn($q, $v) => $q->where('priority', $v))
+            ->when(! $user->isAdmin(), fn ($q) => $q->where('user_id', $user->id))
+            ->when($filters['search'] ?? null, fn ($q, $v) => $q->where('title', 'like', "%{$v}%"))
+            ->when($filters['status'] ?? null, fn ($q, $v) => $q->where('status', $v))
+            ->when($filters['priority'] ?? null, fn ($q, $v) => $q->where('priority', $v))
             ->latest()
             ->get();
 
