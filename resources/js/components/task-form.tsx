@@ -13,7 +13,15 @@ type FormData = {
 const inputClass =
     'w-full rounded-md border border-neutral-300 bg-transparent px-3 py-2 text-sm dark:border-neutral-700';
 
-function Field({ label, error, children }: { label: string; error?: string; children: ReactNode }) {
+function Field({
+    label,
+    error,
+    children,
+}: {
+    label: string;
+    error?: string;
+    children: ReactNode;
+}) {
     return (
         <div className="grid gap-1">
             <label className="text-sm font-medium">{label}</label>
@@ -56,7 +64,9 @@ export default function TaskForm({ task }: { task?: Task }) {
                     rows={4}
                     className={inputClass}
                     value={form.data.description}
-                    onChange={(e) => form.setData('description', e.target.value)}
+                    onChange={(e) =>
+                        form.setData('description', e.target.value)
+                    }
                 />
             </Field>
 
@@ -68,7 +78,9 @@ export default function TaskForm({ task }: { task?: Task }) {
                         onChange={(e) => form.setData('status', e.target.value)}
                     >
                         {STATUSES.map((s) => (
-                            <option key={s.value} value={s.value}>{s.label}</option>
+                            <option key={s.value} value={s.value}>
+                                {s.label}
+                            </option>
                         ))}
                     </select>
                 </Field>
@@ -77,10 +89,14 @@ export default function TaskForm({ task }: { task?: Task }) {
                     <select
                         className={inputClass}
                         value={form.data.priority}
-                        onChange={(e) => form.setData('priority', e.target.value)}
+                        onChange={(e) =>
+                            form.setData('priority', e.target.value)
+                        }
                     >
                         {PRIORITIES.map((p) => (
-                            <option key={p.value} value={p.value}>{p.label}</option>
+                            <option key={p.value} value={p.value}>
+                                {p.label}
+                            </option>
                         ))}
                     </select>
                 </Field>
@@ -90,7 +106,9 @@ export default function TaskForm({ task }: { task?: Task }) {
                         type="date"
                         className={inputClass}
                         value={form.data.due_date}
-                        onChange={(e) => form.setData('due_date', e.target.value)}
+                        onChange={(e) =>
+                            form.setData('due_date', e.target.value)
+                        }
                     />
                 </Field>
             </div>
@@ -103,7 +121,10 @@ export default function TaskForm({ task }: { task?: Task }) {
                 >
                     {task ? 'Save changes' : 'Create task'}
                 </button>
-                <Link href="/tasks" className="rounded-md border px-4 py-2 text-sm">
+                <Link
+                    href="/tasks"
+                    className="rounded-md border px-4 py-2 text-sm"
+                >
                     Cancel
                 </Link>
             </div>
